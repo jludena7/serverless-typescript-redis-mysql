@@ -38,7 +38,7 @@ npm run test
   ```
   {
       "status": 201,
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjk1Mjc4Njc5LCJleHAiOjE2OTUyODA0Nzl9.8P5G_SjJ30ejlD9flv3dAuGLhsOjiDcIN4Asnid0oAY"
+      "token": "{API_TOKEN}"
   }
   ```
 - Create Article
@@ -47,12 +47,12 @@ npm run test
   POST /dev/article HTTP/1.1
   Host: 0.0.0.0:5000
   Content-Type: application/json
-  Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjk1Mjc4Njc5LCJleHAiOjE2OTUyODA0Nzl9.8P5G_SjJ30ejlD9flv3dAuGLhsOjiDcIN4Asnid0oAY
+  Authorization: Bearer {API_TOKEN}
   Content-Length: 234
   
   {
-  "title": "How Coco Gauff Embodies the Biggest Story in Sports",
-  "content": "As our Sports of The Times columnist moves to a new assignment, he reflects on a recurring theme from his tenure: the rise of female athletes."
+  "title": "Serverless Framework Documentation",
+  "content": "This is the guiding principle behind the Serverless Framework, which was developed following the release of AWS Lambda in 2014."
   }
   ```
 - Get Article
@@ -60,7 +60,7 @@ npm run test
   ```
   GET /dev/article/lFTLtA3diYaWSQz7zij6VRtJDdEpWtcw HTTP/1.1
   Host: 0.0.0.0:5000
-  Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjk1Mjc4Njc5LCJleHAiOjE2OTUyODA0Nzl9.8P5G_SjJ30ejlD9flv3dAuGLhsOjiDcIN4Asnid0oAY
+  Authorization: Bearer {API_TOKEN}
   ```
 
 ## Template features
