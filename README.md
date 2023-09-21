@@ -26,7 +26,7 @@ npm run test
 - Create token
   - Request:
   ```
-  POST /dev/token HTTP/1.1
+  POST http://0.0.0.0:5000/dev/token HTTP/1.1
   Host: 0.0.0.0:5000
   Content-Type: application/json
   {
@@ -44,7 +44,7 @@ npm run test
 - Create Article
   - Request:
   ```
-  POST /dev/article HTTP/1.1
+  POST http://0.0.0.0:5000/dev/article HTTP/1.1
   Host: 0.0.0.0:5000
   Content-Type: application/json
   Authorization: Bearer {API_TOKEN}
@@ -58,7 +58,7 @@ npm run test
 - Get Article
   - Request:
   ```
-  GET /dev/article/lFTLtA3diYaWSQz7zij6VRtJDdEpWtcw HTTP/1.1
+  GET http://0.0.0.0:5000/dev/article/lFTLtA3diYaWSQz7zij6VRtJDdEpWtcw HTTP/1.1
   Host: 0.0.0.0:5000
   Authorization: Bearer {API_TOKEN}
   ```
