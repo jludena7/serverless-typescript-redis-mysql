@@ -1,0 +1,52 @@
+version: '3.8'
+services:
+  mysql-db-tree:
+    image: mariadb:10.0
+    environment:
+      - MYSQL_DATABASE=db_editor
+      - MYSQL_ROOT_PASSWORD=mauFJcuf5dhRMQrjj
+      - MYSQL_USER=db_editor_admin
+      - MYSQL_PASSWORD=db_editor_admin
+    ports:
+      - '3307:3306'
+    volumes:
+      - mysql-db-tree:/var/lib/mysql
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    expose:
+      - '3307'
+  redis-cache-tree:
+    image: redis:6.2-alpine
+    restart: always
+    ports:
+      - '6380:6379'
+    expose:
+      - '6380'
+    command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+    volumes:
+      - redis-cache-tree:/data
+  api:
+    container_name: api-container-tree
+    image: api-container-tree
+    depends_on:
+      - mysql-db-tree
+      - redis-cache-tree
+    links:
+      - mysql-db-tree
+      - redis-cache-tree
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:3000"
+    volumes:
+      - "./db:/usr/app/db"
+      - "./src:/usr/app/src"
+      - "./serverless.ts:/usr/app/serverless.ts"
+      - "./tsconfig.build.json:/usr/app/tsconfig.build.json"
+      - "./tsconfig.json:/usr/app/tsconfig.json"
+      - "./tsconfig.paths.json:/usr/app/tsconfig.paths.json"
+volumes:
+  mysql-db-tree:
+    driver: local
+  redis-cache-tree:
+    driver: local
