@@ -1,7 +1,6 @@
 import type Article from '../models/article'
 import ArticleRepository from '../repository/article.repository'
 import Cache from '../helpers/cache'
-import * as process from 'process'
 import { generateId } from '../helpers/generate-id'
 
 export default class ArticleService {
@@ -20,18 +19,18 @@ export default class ArticleService {
     return article.code
   }
 
-  async findArticleByCode (code: string): Promise<any> {
+  async findArticleByCode (code: string): Promise<Article|null> {
     const cacheKey = `article:${code}`
     const articleCache = await this.cache.client().get(cacheKey)
     if (articleCache != null) {
-      return JSON.parse(articleCache)
+      return (JSON.parse(articleCache)) as Article
     }
 
-    let articleDb = await this.articleRepository.findByCode(code)
+    const articleDb = await this.articleRepository.findByCode(code)
     if (articleDb != null) {
-      articleDb = JSON.stringify(articleDb)
-      await this.cache.client().setEx(cacheKey, Number(process.env.ARTICLE_DATA_EXPIRATION), articleDb)
-      return JSON.parse(articleDb)
+      const articleDbString = (JSON.stringify(articleDb)) as string
+      await this.cache.client().setEx(cacheKey, Number(process.env.ARTICLE_DATA_EXPIRATION), articleDbString)
+      return (JSON.parse(articleDbString)) as Article
     }
 
     return null

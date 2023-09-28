@@ -7,7 +7,7 @@ export default class ArticleRepository {
     this.db = new DbDriver()
   }
 
-  async findByCode (code: string): Promise<any> {
+  async findByCode (code: string): Promise<unknown> {
     return await new Promise((resolve, reject) => {
       this.db.pool().getConnection((error, connection) => {
         if (error != null) {
@@ -27,7 +27,7 @@ export default class ArticleRepository {
     })
   }
 
-  async create (article: Article): Promise<any> {
+  async create (article: Article): Promise<unknown> {
     return await new Promise((resolve, reject) => {
       this.db.pool().getConnection((error, connection) => {
         if (error != null) {

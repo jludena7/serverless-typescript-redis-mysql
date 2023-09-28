@@ -3,7 +3,7 @@ import {
   validStringRangeLength
 } from '../helpers/common-validation'
 
-export const articleDto = (body: any): Article => {
+export const articleDto = (body: string): Article => {
   const obj = JSON.parse(JSON.stringify(body))
   const article: Article = {
     title: obj.title,

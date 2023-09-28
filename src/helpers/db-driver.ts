@@ -1,5 +1,5 @@
-import * as mysql from "mysql";
-import {Pool, PoolConfig} from "mysql";
+import * as mysql from 'mysql'
+import {Pool, PoolConfig} from 'mysql'
 
 export default class DbDriver {
   private readonly _pool: Pool

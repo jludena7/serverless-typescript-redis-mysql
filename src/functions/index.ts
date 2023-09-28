@@ -1,1 +1,1 @@
-export { createToken, createArticle, getArticle } from './publishing';
+export { createToken, createArticle, getArticle } from './publishing'

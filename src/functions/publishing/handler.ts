@@ -1,12 +1,12 @@
-import { formatJSONResponse } from '@libs/api-gateway';
-import { middyfy } from '@libs/lambda';
-import {APIGatewayProxyEvent} from "aws-lambda";
-import AuthorService from "../../services/author.service";
-import ArticleService from "../../services/article.service";
-import {validateTokenHeader} from "../../helpers/validate-token-header";
-import {validStringLength} from "../../helpers/common-validation";
-import {articleDto} from "../../dto/article-dto";
-import { authorDto } from "../../dto/author-dto";
+import { formatJSONResponse } from '@libs/api-gateway'
+import { middyfy } from '@libs/lambda'
+import { type APIGatewayProxyEvent } from 'aws-lambda'
+import AuthorService from '../../services/author.service'
+import ArticleService from '../../services/article.service'
+import { validateTokenHeader } from '../../helpers/validate-token-header'
+import { validStringLength } from '../../helpers/common-validation'
+import { articleDto } from '../../dto/article-dto'
+import { authorDto } from '../../dto/author-dto'
 
 export const createToken = middyfy(async (event: APIGatewayProxyEvent): Promise<object> => {
   try {
@@ -56,4 +56,3 @@ export const getArticle = middyfy(async (event: APIGatewayProxyEvent): Promise<o
     return formatJSONResponse({ status: 400, message: e.message })
   }
 })
-

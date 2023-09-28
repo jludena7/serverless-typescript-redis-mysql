@@ -2,11 +2,12 @@ version: '3.8'
 services:
   mysql-db-tree:
     image: mariadb:10.0
+    env_file: ./env.docker
     environment:
-      - MYSQL_DATABASE=db_editor
-      - MYSQL_ROOT_PASSWORD=mauFJcuf5dhRMQrjj
-      - MYSQL_USER=db_editor_admin
-      - MYSQL_PASSWORD=db_editor_admin
+      - MYSQL_DATABASE=${DB_NAME}
+      - MYSQL_ROOT_PASSWORD=${DOCKER_DB_ROOT_PASSWORD}
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
     ports:
       - '3307:3306'
     volumes:
@@ -16,12 +17,13 @@ services:
       - '3307'
   redis-cache-tree:
     image: redis:6.2-alpine
+    env_file: ./env.docker
     restart: always
     ports:
       - '6380:6379'
     expose:
       - '6380'
-    command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+    command: redis-server --save 20 1 --loglevel warning --requirepass ${DOCKER_REDIS_PASSWORD}
     volumes:
       - redis-cache-tree:/data
   api:

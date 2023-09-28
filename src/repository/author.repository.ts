@@ -7,7 +7,7 @@ export default class AuthorRepository {
     this.db = new DbDriver()
   }
 
-  async findByEmail (email: string): Promise<any> {
+  async findByEmail (email: string): Promise<unknown> {
     return await new Promise((resolve, reject) => {
       this.db.pool().getConnection((error, connection) => {
         if (error != null) {

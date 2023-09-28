@@ -1,6 +1,6 @@
-import type { AWS } from '@serverless/typescript';
+import type { AWS } from '@serverless/typescript'
 
-import { createToken, createArticle, getArticle } from '@functions/publishing';
+import { createToken, createArticle, getArticle } from '@functions/publishing'
 
 const serverlessConfiguration: AWS = {
   service: 'serverless-typescript-redis-mysql',
@@ -11,12 +11,12 @@ const serverlessConfiguration: AWS = {
     runtime: 'nodejs14.x',
     apiGateway: {
       minimumCompressionSize: 1024,
-      shouldStartNameWithService: true,
+      shouldStartNameWithService: true
     },
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
-      NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000',
-    },
+      NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000'
+    }
   },
   // import the function via paths
   functions: { createToken, createArticle, getArticle },
@@ -32,16 +32,14 @@ const serverlessConfiguration: AWS = {
       platform: 'node',
       concurrency: 10,
 
-      //Add custom
+      // Add custom
       tsconfig: 'tsconfig.build.json',
       watch: {
         pattern: ['src/**/*.ts'],
-        ignore: [
-          'src/functions/**/index.ts',
-        ],
-      },
-    },
-  },
-};
+        ignore: ['.esbuild', 'dist', 'node_modules', 'tests'],
+      }
+    }
+  }
+}
 
-module.exports = serverlessConfiguration;
+module.exports = serverlessConfiguration

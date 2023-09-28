@@ -6,7 +6,7 @@
   "scripts": {
     "start": "serverless offline --host=0.0.0.0 --verbose",
     "dev": "nodemon --exec npm start",
-    "lint": "eslint src/**/*.ts",
+    "lint": "eslint src/**/*.ts serverless.ts",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "deploy": "serverless deploy"

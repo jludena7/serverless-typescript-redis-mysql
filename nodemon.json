@@ -1,0 +1,9 @@
+{
+  "watch": [
+    "serverless.ts",
+    "src/**/*.ts",
+    "tsconfig*.json"
+  ],
+  "ext": "ts,json",
+  "delay": 500
+}

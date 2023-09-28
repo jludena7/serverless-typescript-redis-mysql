@@ -3,7 +3,7 @@ import {
   validateEmail
 } from '../helpers/common-validation'
 
-export const authorDto = (body: any): Author => {
+export const authorDto = (body: string): Author => {
   const obj = JSON.parse(JSON.stringify(body))
   const author: Author = {
     email: obj.email,

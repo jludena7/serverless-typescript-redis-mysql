@@ -16,7 +16,7 @@ serverless create --template aws-nodejs-typescript --path project-name
 - Create application image
   - ```docker build -t api-container-tree .```
 - Initialize containers
-  - ```docker-compose up -d```
+  - ```docker-compose --env-file=env.docker up -d```
 ## Execute Unit Test
 ```
 npm run test
